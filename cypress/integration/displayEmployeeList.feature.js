@@ -1,5 +1,5 @@
 describe("Display list of employees", () => {
-  beforeEach(() => {
+  before(() => {
     cy.visit("/");
   });
 
@@ -17,6 +17,12 @@ describe("Display list of employees", () => {
         .first()
         .find(".name")
         .should("contain", "George Bluth");
+    });
+  });
+
+  it("the list items display an image", () => {
+    cy.get("#employee-list").within(() => {
+      cy.get(".employee-item").first().find(".avatar").should("be.visible");
     });
   });
 });
