@@ -12,6 +12,9 @@ class EmployeeList extends Component {
   }
   getEmployees = async () => {
     let employeeData = await axios.get("https://reqres.in/api/users");
+    //let employeeData1= await axios.get("https://reqres.in/api/users?page=2");
+    //this.setState({ employees1: employeeData1.data.data });
+
     this.setState({ employees: employeeData.data.data });
   };
 
@@ -36,6 +39,8 @@ class EmployeeList extends Component {
             </Item.Extra>
           </Item.Content>
         </Item>
+
+        
       );
     });
     return <Item.Group id="employee-list">{employeeList}</Item.Group>;
