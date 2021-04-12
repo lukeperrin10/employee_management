@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import axios from "axios";
 import { Modal, Image, Header, Button } from "semantic-ui-react";
 
 class EmployeeModal extends Component {
@@ -6,6 +7,13 @@ class EmployeeModal extends Component {
     open: false,
     employee: {},
   };
+  getEmployee = async () => {
+    let employeeData = await axios.get(
+      `https://reqres.in/api/users/${this.props.id}`
+    );
+    this.setState({ employee: employeeData.data.data });
+  };
+
   render() {
     return (
       <Modal
@@ -13,7 +21,7 @@ class EmployeeModal extends Component {
         onOpen={() => this.setState({ open: true })}
         open={this.state.open}
         trigger={
-          <Button size="tiny" positive className="view-button">
+          <Button onClick={() => { this.getEmployee() }} size="tiny" positive className="view-button">
             View
           </Button>
         }
@@ -27,14 +35,14 @@ class EmployeeModal extends Component {
           />
           <Modal.Description>
             <Header className="name">
-              {this.state.employee.first_name} {this.state.employee.last_name}{" "}
+              {this.state.employee.first_name} {this.state.employee.last_name}
             </Header>
             <p className="email">Email: {this.state.employee.email}</p>
           </Modal.Description>
         </Modal.Content>
         <Modal.Actions>
           <Button color="black">Edit</Button>
-          <Button nagative>Delete</Button>
+          <Button negative>Delete</Button>
         </Modal.Actions>
       </Modal>
     );
