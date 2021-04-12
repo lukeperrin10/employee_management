@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
-//import EmployeeModal from "./EmployeeModal";
-import { Item, ItemContent } from "semantic-ui-react";
+import EmployeeModal from "./EmployeeModal";
+import { Item } from "semantic-ui-react";
 
 class EmployeeList extends Component {
   state = {
@@ -31,6 +31,9 @@ class EmployeeList extends Component {
             <Item.Header className="name">
               {employee.first_name} {employee.last_name}
             </Item.Header>
+            <Item.Extra>
+              <EmployeeModal id={employee.id} />
+            </Item.Extra>
           </Item.Content>
         </Item>
       );
