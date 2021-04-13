@@ -36,6 +36,8 @@ class EmployeeList extends Component {
             </Item.Extra>
           </Item.Content>
         </Item>
+
+        
       );
     });
     return <Item.Group id="employee-list">{employeeList}</Item.Group>;
