@@ -11,10 +11,7 @@ class EmployeeList extends Component {
     this.getEmployees();
   }
   getEmployees = async () => {
-    let employeeData = await axios.get("https://reqres.in/api/users");
-    //let employeeData1= await axios.get("https://reqres.in/api/users?page=2");
-    //this.setState({ employees1: employeeData1.data.data });
-
+    let employeeData = await axios.get("https://reqres.in/api/users?per_page=12");
     this.setState({ employees: employeeData.data.data });
   };
 
